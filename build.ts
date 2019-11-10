@@ -1,10 +1,10 @@
 import ts from 'typescript';
 import prettier from 'prettier';
 import prettierrc from '@whatasoda/eslint-config/.prettierrc.json';
-import { spec } from '../package.json';
+import { spec } from './package.json';
 
 const targets = ['Int8', 'Uint8', 'Uint8Clamped', 'Int16', 'Uint16', 'Int32', 'Uint32', 'Float32', 'Float64'];
-const NAME_LIST = ['BaseTuples', 'Tuples', 'OneOfSupportedLength', 'NumericTuples', 'N2S'] as const;
+const NAME_LIST = ['BaseTuples', 'Tuples', 'TupleLength', 'NumericTuples', 'N2S'] as const;
 
 const NAMES = (() => {
   return NAME_LIST.reduce<Record<string, typeof NAME_LIST[number]>>((acc, name) => {
@@ -16,7 +16,7 @@ const NAMES = (() => {
 const ZERO = () => ts.createLiteralTypeNode(ts.createNumericLiteral('0'));
 const T = () => ts.createTypeReferenceNode('T', undefined);
 const TextendsOneOfSupportedLength = () => {
-  return ts.createTypeParameterDeclaration('T', ts.createTypeReferenceNode(NAMES.OneOfSupportedLength, undefined));
+  return ts.createTypeParameterDeclaration('T', ts.createTypeReferenceNode(NAMES.TupleLength, undefined));
 };
 
 const main = () => {

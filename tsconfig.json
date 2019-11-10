@@ -4,6 +4,6 @@
     "rootDir": "./",
     "resolveJsonModule": true,
   },
-  "include": ["src", "scripts", "package.json"],
+  "include": ["**/*"],
   "exclude": ["node_modules"]
 }

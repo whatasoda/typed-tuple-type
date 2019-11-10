@@ -18,7 +18,7 @@
   },
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "rm -rf lib && mkdir -p lib && ts-node scripts/build.ts src/header.d.ts lib/index.d.ts",
+    "build": "rm -rf lib && mkdir -p lib && ts-node build.ts header.d.ts lib/index.d.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

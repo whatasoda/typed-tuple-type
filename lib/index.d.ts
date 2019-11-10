@@ -10,62 +10,59 @@ type NumTuplesTmp<T extends Record<KeyToPick, any[]>> = {
 };
 
 export interface NumericTuples extends Omit<NumTuplesTmp<Tuples>, keyof any[]> {}
-
-declare global {
-  type OneOfSupportedLength = NumericTuples[keyof NumericTuples]['length'];
-  type S2N<T extends keyof NumericTuples> = NumericTuples[T]['length'];
-  type N2S<T extends OneOfSupportedLength> = {
-    [K in keyof NumericTuples]: NumericTuples[K]['length'] extends T ? K : never;
-  }[keyof NumericTuples];
-}
+export type TupleLength = NumericTuples[keyof NumericTuples]['length'];
+export type S2N<T extends keyof NumericTuples> = NumericTuples[T]['length'];
+export type N2S<T extends TupleLength> = {
+  [K in keyof NumericTuples]: NumericTuples[K]['length'] extends T ? K : never;
+}[keyof NumericTuples];
 /* End of header.d.ts */
 
 interface Tuples extends BaseTuples {}
 declare global {
-  type Int8Tuple<T extends OneOfSupportedLength> = Omit<Int8Array, number> & NumericTuples[N2S<T>];
+  type Int8Tuple<T extends TupleLength> = Omit<Int8Array, number> & NumericTuples[N2S<T>];
   interface Int8ArrayConstructor {
     new (): Int8Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Int8Tuple<T>;
+    new <T extends TupleLength>(length: T): Int8Tuple<T>;
   }
-  type Uint8Tuple<T extends OneOfSupportedLength> = Omit<Uint8Array, number> & NumericTuples[N2S<T>];
+  type Uint8Tuple<T extends TupleLength> = Omit<Uint8Array, number> & NumericTuples[N2S<T>];
   interface Uint8ArrayConstructor {
     new (): Uint8Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Uint8Tuple<T>;
+    new <T extends TupleLength>(length: T): Uint8Tuple<T>;
   }
-  type Uint8ClampedTuple<T extends OneOfSupportedLength> = Omit<Uint8ClampedArray, number> & NumericTuples[N2S<T>];
+  type Uint8ClampedTuple<T extends TupleLength> = Omit<Uint8ClampedArray, number> & NumericTuples[N2S<T>];
   interface Uint8ClampedArrayConstructor {
     new (): Uint8ClampedTuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Uint8ClampedTuple<T>;
+    new <T extends TupleLength>(length: T): Uint8ClampedTuple<T>;
   }
-  type Int16Tuple<T extends OneOfSupportedLength> = Omit<Int16Array, number> & NumericTuples[N2S<T>];
+  type Int16Tuple<T extends TupleLength> = Omit<Int16Array, number> & NumericTuples[N2S<T>];
   interface Int16ArrayConstructor {
     new (): Int16Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Int16Tuple<T>;
+    new <T extends TupleLength>(length: T): Int16Tuple<T>;
   }
-  type Uint16Tuple<T extends OneOfSupportedLength> = Omit<Uint16Array, number> & NumericTuples[N2S<T>];
+  type Uint16Tuple<T extends TupleLength> = Omit<Uint16Array, number> & NumericTuples[N2S<T>];
   interface Uint16ArrayConstructor {
     new (): Uint16Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Uint16Tuple<T>;
+    new <T extends TupleLength>(length: T): Uint16Tuple<T>;
   }
-  type Int32Tuple<T extends OneOfSupportedLength> = Omit<Int32Array, number> & NumericTuples[N2S<T>];
+  type Int32Tuple<T extends TupleLength> = Omit<Int32Array, number> & NumericTuples[N2S<T>];
   interface Int32ArrayConstructor {
     new (): Int32Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Int32Tuple<T>;
+    new <T extends TupleLength>(length: T): Int32Tuple<T>;
   }
-  type Uint32Tuple<T extends OneOfSupportedLength> = Omit<Uint32Array, number> & NumericTuples[N2S<T>];
+  type Uint32Tuple<T extends TupleLength> = Omit<Uint32Array, number> & NumericTuples[N2S<T>];
   interface Uint32ArrayConstructor {
     new (): Uint32Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Uint32Tuple<T>;
+    new <T extends TupleLength>(length: T): Uint32Tuple<T>;
   }
-  type Float32Tuple<T extends OneOfSupportedLength> = Omit<Float32Array, number> & NumericTuples[N2S<T>];
+  type Float32Tuple<T extends TupleLength> = Omit<Float32Array, number> & NumericTuples[N2S<T>];
   interface Float32ArrayConstructor {
     new (): Float32Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Float32Tuple<T>;
+    new <T extends TupleLength>(length: T): Float32Tuple<T>;
   }
-  type Float64Tuple<T extends OneOfSupportedLength> = Omit<Float64Array, number> & NumericTuples[N2S<T>];
+  type Float64Tuple<T extends TupleLength> = Omit<Float64Array, number> & NumericTuples[N2S<T>];
   interface Float64ArrayConstructor {
     new (): Float64Tuple<0>;
-    new <T extends OneOfSupportedLength>(length: T): Float64Tuple<T>;
+    new <T extends TupleLength>(length: T): Float64Tuple<T>;
   }
 }
 // prettier-ignore
