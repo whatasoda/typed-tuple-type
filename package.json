@@ -1,6 +1,6 @@
 {
   "name": "typed-tuple-type",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a type utility to apply tuple feature to TypedArray such as Float32Array in TypeScript context",
   "main": "lib/index.d.ts",
   "spec": {
