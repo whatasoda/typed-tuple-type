@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/typed-tuple-type.svg)](https://badge.fury.io/js/typed-tuple-type)
 # typed-tuple-type
 a type utility to apply tuple feature to TypedArray such as Float32Array in TypeScript context
 
