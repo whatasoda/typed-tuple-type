@@ -31,13 +31,14 @@ const main = () => {
     outfile,
   );
 
-  ts.sys.writeFile(
-    outpath,
-    prettier.format(`${header}\n${content}`, {
+  const result = prettier
+    .format(`${header}\n${content}`, {
       parser: 'typescript',
       ...(prettierrc as any),
-    }),
-  );
+    })
+    .replace(/(?<=\n)\/\/\sprettier-ignore\n/g, '')
+    .replace(/(?<=0,) (?=0)/g, '');
+  ts.sys.writeFile(outpath, result);
 };
 
 const build = (length: number, targets: string[]): ts.Statement[] => {
@@ -115,10 +116,7 @@ const createTypedArrayExtensions = (types: string[]) => {
       localNames.XXXTuple,
       [TextendsOneOfSupportedLength()],
       ts.createIntersectionTypeNode([
-        ts.createTypeReferenceNode('Omit', [
-          ts.createTypeReferenceNode(localNames.XXXArray, undefined),
-          ts.createKeywordTypeNode(ts.SyntaxKind.NumberKeyword),
-        ]),
+        ts.createTypeReferenceNode(localNames.XXXArray, undefined),
         ts.createIndexedAccessTypeNode(
           ts.createTypeReferenceNode(NAMES.NumericTuples, undefined),
           ts.createTypeReferenceNode(NAMES.N2S, [T()]),

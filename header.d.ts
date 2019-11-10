@@ -2,9 +2,9 @@
 type Placeholder = Omit<[[], [0]], keyof any[]>;
 interface Tuples extends Placeholder {}
 
-type Numerify<T extends any[]> = { [I in keyof T]: number };
+type Numerify<T extends any[]> = { [I in keyof T]: T[I] extends number ? number : never };
 export type NumericTuples = {
-  [I in Exclude<keyof Tuples, keyof any[]>]: Omit<Numerify<Tuples[I]>, keyof any[]>;
+  [I in Exclude<keyof Tuples, keyof any[]>]: Omit<Numerify<Tuples[I]>, keyof any[]> & { [i: number]: undefined };
 };
 export type TupleLength = Tuples[keyof NumericTuples]['length'];
 export type S2N<T extends keyof NumericTuples> = Tuples[T]['length'];
@@ -12,3 +12,4 @@ export type N2S<T extends TupleLength> = {
   [K in keyof NumericTuples]: Tuples[K]['length'] extends T ? K : never;
 }[keyof NumericTuples];
 /* End of header.d.ts */
+/* eslint-disable */
