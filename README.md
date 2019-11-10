@@ -2,13 +2,13 @@
 # typed-tuple-type
 a type utility to apply tuple feature to TypedArray such as Float32Array in TypeScript context
 
-## What is `typed-tuple-type`
+## What `typed-tuple-type` is
 ```ts
-const vector3 = new Float32Array(3);
-vector[0]; // OK
-vector[1]; // OK
-vector[2]; // OK
-vector[3]; // Error
+const vector3 = new Float32Array(3).fill(0);
+vector3[0] // 0
+vector3[1] // 0
+vector3[2] // 0
+vector3[3] // undefined
 
 let vector2: Float32Tuple<2>;
 vector2 = new Float32Array(1); // Error
